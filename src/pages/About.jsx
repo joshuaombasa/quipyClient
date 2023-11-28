@@ -36,7 +36,7 @@ export default function About() {
                 <div className="about--page--cta">
                     <h2 className="header--text">Join the Quipy Community</h2>
                     <p>Whether you are a healthcare professional, a clinic, or an institution, Quipy invites you to be part of our community dedicated to transforming healthcare through innovation. Explore our leasing solutions, discover the latest advancements in medical technology, and experience a new era in healthcare equipment accessibility.</p>
-                    <Link>Explore our equipment</Link>
+                    <Link to='/equipment'>Explore our equipment</Link>
                 </div>
             </div>
         </div>
