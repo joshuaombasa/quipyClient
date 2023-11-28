@@ -13,6 +13,11 @@ import Dashboard from './pages/vendor/Dashboard'
 import Income from './pages/vendor/Income'
 import VendorEquipment from './pages/vendor/VendorEquipment'
 import Reviews from './pages/vendor/Reviews'
+import NotFound from './pages/NotFound'
+import SelectedVendorEquipment from './pages/vendor/SelectedVendorEquipment'
+import SelectedVendorEquipmentDetails from './components/SelectedVendorEquipmentDetails'
+import SelectedVendorEquipmentPrice from './components/SelectedVendorEquipmentPrice'
+import SelectedVendorEquipmentPhotos from './components/SelectedVendorEquipmentPhotos'
 
 function App() {
 
@@ -25,11 +30,17 @@ function App() {
           <Route path='equipment' element={<Machinery />} />
           <Route path='equipment/:id' element={<SingleMachine />} />
           <Route path='vendor' element={<VendorLayout />}>
-            <Route index element={<Dashboard/>}/>
-            <Route path='income' element={<Income/>}/>
-            <Route path='equipment' element={<VendorEquipment/>}/>
-            <Route path='reviews' element={<Reviews/>}/>
+            <Route index element={<Dashboard />} />
+            <Route path='income' element={<Income />} />
+            <Route path='equipment' element={<VendorEquipment />} />
+            <Route path='equipment/:id' element={<SelectedVendorEquipment />}>
+                <Route index  element={<SelectedVendorEquipmentDetails/>}/>
+                <Route path='price'  element={<SelectedVendorEquipmentPrice/>}/>
+                <Route path='photos'  element={<SelectedVendorEquipmentPhotos/>}/>
+            </Route>
+            <Route path='reviews' element={<Reviews />} />
           </Route>
+          <Route path='*' element={<NotFound />} />
         </Route>
       </>
     )
