@@ -6,10 +6,10 @@ import { useOutletContext } from "react-router-dom";
 export default function SelectedVendorEquipmentPhotos() {
 
     const { machine } = useOutletContext()
-    
+
     return (
         <div className="selectedVendorEquipment--photos">
-            <img src={spacePhoto} alt="" />
+            <img src={machine.imageUrl} alt="" />
         </div>
     )
 }
