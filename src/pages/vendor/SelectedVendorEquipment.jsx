@@ -23,21 +23,37 @@ export default function SelectedVendorEquipment() {
         )
     }
 
+    const activeStyle = {
+        border: '2px solid #4D4D4D'
+    }
+
     return (
         <div className="selectedVendorEquipment--page">
             <div className="selectedVendorEquipment--page--container">
-                <img src="https://t3.ftcdn.net/jpg/01/27/96/46/240_F_127964695_WxIo3nLZmbwMLCd8jWQdr7fl1KfH1L6N.jpg" alt="" />
-                <div className="selectedVendorEquipment--top--right">
-                    <h2>{machine.name}</h2>
-                    <span>{machine.type}</span>
+                <div className="top--area">
+                    <img src={machine.imageUrl} alt="" />
+                    <div className="selectedVendorEquipment--top--right">
+                        <h2>{machine.name}</h2>
+                        <span>{machine.type}</span>
+                    </div>
                 </div>
+                <div className="selectedVendorEquipment--page--nav">
+                    <NavLink 
+                         to='.'
+                         style={({isActive}) => isActive ? activeStyle: null}
+                         end
+                    >Details</NavLink>
+                    <NavLink 
+                         to='price'
+                         style={({isActive}) => isActive ? activeStyle: null}
+                    >Price</NavLink>
+                    <NavLink 
+                         to='photos'
+                         style={({isActive}) => isActive ? activeStyle: null}
+                    >Images</NavLink>
+                </div>
+                <Outlet context={{ machine }} />
             </div>
-            <div className="selectedVendorEquipment--page--nav">
-                <NavLink to='.'>Details</NavLink>
-                <NavLink to='price'>Price</NavLink>
-                <NavLink to='photos'>Images</NavLink>
-            </div>
-            <Outlet context={{machine}}/>
         </div>
     )
 }
