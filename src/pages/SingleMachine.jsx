@@ -31,7 +31,7 @@ export default function SingleMachine() {
                     to={`..${backLinkLogic}`}
                     relative="path"
                 >&larr; Back to {prevSearchParams} equipment</Link>
-                <img src="https://t3.ftcdn.net/jpg/01/27/96/46/240_F_127964695_WxIo3nLZmbwMLCd8jWQdr7fl1KfH1L6N.jpg" alt="" />
+                <img src={machine.imageUrl} alt="" />
                 <h1>{machine.name}</h1>
                 <span className="singleMachineItem--type">{machine.type}</span>
                 <h3>${machine.price}/month</h3>
