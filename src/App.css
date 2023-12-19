@@ -50,8 +50,17 @@ span {
 }
 
 .header--nav>a {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   color: white;
+  padding: 0.5em;
+  border-radius: 25px;
+  width: 150px;
+  text-align: center;
+  border: 2px solid royalblue;
+}
+
+.header--nav>a:hover {
+  border: 2px solid white;
 }
 
 .footer--container {
@@ -343,6 +352,10 @@ span {
   font-style: normal;
   font-weight: 500;
   line-height: 22.923px;
+  padding: 0.5em;
+  border-radius: 25px;
+  width: 150px;
+  text-align: center;
 }
 
 .not--found--page {
@@ -375,6 +388,14 @@ span {
   padding: 0.5em;
   background-color: royalblue;
   border-radius: 3px;
+}
+
+.vendor--layout--container {
+  padding: 2em;
+}
+
+.vendor--layout--nav {
+  padding: 1em 0;
 }
 
 .vendorEquipment--page--container {
@@ -420,6 +441,36 @@ span {
   border-radius: 3px;
 }
 
+.selectedVendorEquipment--page--container {
+  padding: 2em ;
+  background-color: white;
+  border-radius: 5px;
+  min-height: 77vh;
+}
+
+.selectedVendorEquipment--page--container .top--area {
+  display: flex;
+  align-items: center;
+  gap: 2em;
+  padding: 2em 0;
+}
+
+.selectedVendorEquipment--top--right {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.selectedVendorEquipment--top--right > span {
+  background-color: #474646;
+  padding: 0.5em;
+  width: 150px;
+  font-size: 1.1rem;
+  text-align: center;
+  color: white;
+  border-radius: 3px;
+}
+
 .selectedVendorEquipment--page--nav > a {
   color: #4D4D4D;
   font-family: Inter;
@@ -427,4 +478,19 @@ span {
   font-style: normal;
   font-weight: 500;
   line-height: 22.923px;
+  padding: 0.5em 0;
+  border: 2px solid white;
+  width: 100px;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.selectedVendorEquipment--page--nav > a:hover {
+  border: 2px solid #4D4D4D;
+}
+
+.selectedVendorEquipment--photos > img {
+  width: 250px;
+  height: 200px;
+  border-radius: 3px;
 }
