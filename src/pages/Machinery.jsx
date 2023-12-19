@@ -1,10 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import React, { Suspense, useEffect, useState } from "react";
+import { useLoaderData, useSearchParams, defer, Await } from "react-router-dom";
 import SingleMachineItem from "../components/SingleMachineItem";
+import { getMachines } from "../utils/api";
+
+export async function loader() {
+
+    return defer({ machines: getMachines() })
+}
 
 export default function Machinery() {
 
-    const [machines, setMachines] = useState([])
+    const dataPromise = useLoaderData()
+
+
 
     const [searchParams, setSearchParams] = useSearchParams()
 
@@ -18,37 +26,22 @@ export default function Machinery() {
         setSearchParams(sp)
     }
 
-    useEffect(() => {
-        async function fetchMachines() {
-            const res = await fetch('http://localhost:4000/api/equipment')
-            const data = await res.json()
-            setMachines(data)
-        }
-
-        fetchMachines()
-    }, [])
-
-
-
-    if (machines.length < 1) {
-        return (
-            <h1>Loading...</h1>
-        )
-    }
-
     const filterType = searchParams.get('type') ? searchParams.get('type') : null
 
-    const filteredMachines = filterType ?
-        machines.filter(item => item.type === filterType) :
-        machines
 
-    const machineElements = filteredMachines.map(item => (
-        <SingleMachineItem key={item.id} machine={item} filterType={filterType}/>
-    ))
 
-    return (
-        <div className="machinery--page">
-            <div className="machinery--page--container">
+    function renderMachinery(machines) {
+
+        const filteredMachines = filterType ?
+            machines.filter(item => item.type === filterType) :
+            machines
+
+        const machineElements = filteredMachines.map(item => (
+            <SingleMachineItem key={item.id} machine={item} filterType={filterType} />
+        ))
+
+        return (
+            <>
                 <h1>Explore Our Diverse Range of Equipment</h1>
                 <div className="filter--nav">
                     <button
@@ -73,6 +66,18 @@ export default function Machinery() {
                 <div className="machinery--list--parent">
                     {machineElements}
                 </div>
+            </>
+        )
+    }
+
+    return (
+        <div className="machinery--page">
+            <div className="machinery--page--container">
+                <Suspense fallback={<h1>Loading...</h1>}>
+                    <Await resolve={dataPromise.machines}>
+                        {renderMachinery}
+                    </Await>
+                </Suspense>
             </div>
         </div>
     )
